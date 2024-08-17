@@ -1,0 +1,240 @@
+<%- include('partials/header.ejs') %> 
+
+<!-- Pending Approvals -->
+<section>
+    <div class="row">
+        <div class="container-fluid cf-dataTable">
+            
+            <div class="col-md-12 mx-auto dataTable">
+                <h3 class="formHead1">PENDING PROFILES</h3>
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Details</th>
+                        <th scope="col">Aadhar</th>
+                        <th scope="col">Pan</th>
+                        <th scope="col">Passport</th>
+                        <th scope="col">License</th>
+                        <th scope="col">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <% clients.forEach(client => { %>
+                            <% if (client.status == false) { %>
+                                <tr>
+                                    <td><%=client.name%></td>
+                                    <td>
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#detailsModal<%=client._id%>">
+                                        Details
+                                    </button>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="detailsModal<%=client._id%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="detailsModal<%=client._id%>">Details of <%=client.name%></h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <table class="table">
+                                                    <tbody>
+                                                      <tr>
+                                                        <td>Email</td>
+                                                        <td><%=client.email%></td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>Contact</td>
+                                                        <td><%=client.contact%></td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>Date of Birth</td>
+                                                        <td><%=client.dob%></td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>Address</td>
+                                                        <td><%=client.address%></td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>Qualification</td>
+                                                        <td><%=client.qualification%></td>
+                                                      </tr>
+                                                    </tbody>
+                                                  </table>
+                                            </div>
+                                            <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    </td>
+                                    
+                                    
+                                    <td>
+                                        <% if (client.aadhar === "") { %>
+                                            <a>N/A</a>
+                                        <% } else { %>
+                                            <a href="<%= client.aadhar %>" download style="text-decoration: none; font-weight: bold;color: blue;">Aadhar</a>
+                                        <% } %>
+                                    </td>
+                                    <td>
+                                        <% if (client.pan === "") { %>
+                                            <a>N/A</a>
+                                        <% } else { %>
+                                            <a href="<%= client.pan %>" download style="text-decoration: none; font-weight: bold;color: blue;">PAN</a>
+                                        <% } %>
+                                    </td>
+                                    <td>
+                                        <% if (client.passport === "") { %>
+                                            <a>N/A</a>
+                                        <% } else { %>
+                                            <a href="<%= client.passport %>" download style="text-decoration: none; font-weight: bold;color: blue;">Passport</a>
+                                        <% } %>
+                                    </td>
+                                    <td>
+                                        <% if (client.license === "") { %>
+                                            <a>N/A</a> 
+                                        <% } else { %>
+                                            <a href="<%= client.license %>" download style="text-decoration: none; font-weight: bold;color: blue;">License</a>
+                                        <% } %>
+                                    </td>
+                                    <td>
+                                      <a href="/approve/<%=client._id%>" role="button" class="btn btn-sm btn-primary">Approve</a>
+    
+                                    </td>
+                                    
+                                  </tr>
+                            <% } %>
+                        <% }) %>
+                    </tbody>
+                  </table>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+<!-- Approved Profiles -->
+<section>
+    <div class="row">
+        <div class="container-fluid cf-dataTable">
+            
+            <div class="col-md-12 mx-auto dataTable">
+                <h3 class="formHead1">APPROVED PROFILES</h3>
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Details</th>
+                        <th scope="col">Aadhar</th>
+                        <th scope="col">Pan</th>
+                        <th scope="col">Passport</th>
+                        <th scope="col">License</th>
+                        <th scope="col">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <% clients.forEach(client => { %>
+                            <% if (client.status == true) { %>
+                                <tr>
+                                    <td><%=client.name%></td>
+                                    <td>
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#detailsModal<%=client._id%>">
+                                        Details
+                                    </button>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="detailsModal<%=client._id%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="detailsModal<%=client._id%>">Details of <%=client.name%></h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <table class="table">
+                                                    <tbody>
+                                                      <tr>
+                                                        <td>Email</td>
+                                                        <td><%=client.email%></td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>Contact</td>
+                                                        <td><%=client.contact%></td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>Date of Birth</td>
+                                                        <td><%=client.dob%></td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>Address</td>
+                                                        <td><%=client.address%></td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>Qualification</td>
+                                                        <td><%=client.qualification%></td>
+                                                      </tr>
+                                                    </tbody>
+                                                  </table>
+                                            </div>
+                                            <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    </td>
+                                    
+                                    
+                                    <td>
+                                        <% if (client.aadhar === "") { %>
+                                            <a>N/A</a>
+                                        <% } else { %>
+                                            <a href="<%= client.aadhar %>" download style="text-decoration: none; font-weight: bold;color: blue;">Aadhar</a>
+                                        <% } %>
+                                    </td>
+                                    <td>
+                                        <% if (client.pan === "") { %>
+                                            <a>N/A</a>
+                                        <% } else { %>
+                                            <a href="<%= client.pan %>" download style="text-decoration: none; font-weight: bold;color: blue;">PAN</a>
+                                        <% } %>
+                                    </td>
+                                    <td>
+                                        <% if (client.passport === "") { %>
+                                            <a>N/A</a>
+                                        <% } else { %>
+                                            <a href="<%= client.passport %>" download style="text-decoration: none; font-weight: bold;color: blue;">Passport</a>
+                                        <% } %>
+                                    </td>
+                                    <td>
+                                        <% if (client.license === "") { %>
+                                            <a>N/A</a> 
+                                        <% } else { %>
+                                            <a href="<%= client.license %>" download style="text-decoration: none; font-weight: bold;color: blue;">License</a>
+                                        <% } %>
+                                    </td>
+                                    <td>
+                                      <a href="/revoke/<%=client._id%>" role="button" class="btn btn-sm btn-danger">Revoke</a>
+    
+                                    </td>
+                                    
+                                  </tr>
+                            <% } %>
+                        <% }) %>
+                    </tbody>
+                  </table>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+<%- include('partials/footer.ejs') %>

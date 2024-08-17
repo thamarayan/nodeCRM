@@ -1,0 +1,103 @@
+<%- include('partials/header.ejs') %> 
+
+<!-- Search Profiles -->
+ <section>
+    <div class="container-fluid cf-profiles">
+        <div class="row">
+            <div class="col-md-4 mx-auto searchProfile">
+                <form action="/searchProfile" method="post">
+                    
+                        <div class="form-group">
+                          <label for="key" class="fields">Searh a Profile</label>
+                          <input type="text" class="form-control fields" id="key" name="key" placeholder="Enter a Name">
+                        </div>
+                        <button type="submit" class="btn btn-sm btn-warning mb-2 fields">Search Profile</button>
+                      
+                </form>
+            </div>
+        </div>
+    </div>
+ </section>
+
+<!-- Pending Approvals -->
+<section>
+    <div class="row">
+        <div class="container-fluid cf-dataTable">
+            
+            <div class="col-md-12 mx-auto dataTable">
+                <h3 class="formHead1">PROFILES</h3>
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">EMail</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Contact</th>
+                        <th scope="col">Date of Birth</th>
+                        <th scope="col">Qualification</th>
+                        <th scope="col">Aadhar</th>
+                        <th scope="col">Pan</th>
+                        <th scope="col">Passport</th>
+                        <th scope="col">License</th>
+                        <th scope="col">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <% clients.forEach(client => { %>
+                            
+                                <tr>
+                                    <td><%=client.name%></td>
+                                    <td><%=client.email%></td>
+                                    <td><%=client.address%></td>
+                                    <td><%=client.contact%></td>
+                                    <td><%=client.dob%></td>
+                                    <td><%=client.qualification%></td>
+                                    <td>
+                                        <% if (client.aadhar === "") { %>
+                                            <a>N/A</a>
+                                        <% } else { %>
+                                            <a href="<%= client.aadhar %>" download style="text-decoration: none; font-weight: bold;color: blue;">Aadhar</a>
+                                        <% } %>
+                                    </td>
+                                    <td>
+                                        <% if (client.pan === "") { %>
+                                            <a>N/A</a>
+                                        <% } else { %>
+                                            <a href="<%= client.pan %>" download style="text-decoration: none; font-weight: bold;color: blue;">PAN</a>
+                                        <% } %>
+                                    </td>
+                                    <td>
+                                        <% if (client.passport === "") { %>
+                                            <a>N/A</a>
+                                        <% } else { %>
+                                            <a href="<%= client.passport %>" download style="text-decoration: none; font-weight: bold;color: blue;">Passport</a>
+                                        <% } %>
+                                    </td>
+                                    <td>
+                                        <% if (client.license === "") { %>
+                                            <a>N/A</a> 
+                                        <% } else { %>
+                                            <a href="<%= client.license %>" download style="text-decoration: none; font-weight: bold;color: blue;">License</a>
+                                        <% } %>
+                                    </td>
+                                    <td>
+                                        <% if (client.status === true) { %>
+                                            <a>Approved</a> 
+                                        <% } else { %>
+                                            <a>Pending</a>
+                                        <% } %>
+                                    </td>
+                                    
+                                  </tr>
+                            
+                        <% }) %>
+                    </tbody>
+                  </table>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+
+<%- include('partials/footer.ejs') %> 

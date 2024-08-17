@@ -1,0 +1,160 @@
+<%- include('partials/header.ejs') %>
+
+<section>
+  <form action="/submitClientData" method="post" enctype="multipart/form-data">
+    <!-- Basic Details -->
+    <div class="container-fluid cf-form">
+      <h3 class="formHead">BASIC DETAILS</h3>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="nameField">Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="nameField"
+              name="nameField"
+              aria-describedby="nameField"
+              placeholder="Name"
+            />
+          </div>
+          <div class="form-group">
+            <label for="addressField">Address</label>
+            <input
+              type="text"
+              class="form-control"
+              id="addressField"
+              name="addressField"
+              placeholder="Address"
+              pattern="^(?=\S*\s)(?=[^a-zA-Z]*[a-zA-Z])(?=\D*\d)[a-zA-Z\d\s',.#/-]*$"
+            />
+          </div>
+          <div class="form-group">
+            <label for="dobField">Date of Birth</label>
+            <input
+              type="date"
+              class="form-control"
+              id="dobField"
+              name="dobField"
+              placeholder="Date of Birth"
+              required
+            />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="emailField">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              id="emaklField"
+              name="emailField"
+              aria-describedby="nameField"
+              placeholder="Email"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="contactField">Contact</label>
+            <input
+              type="tel"
+              class="form-control"
+              id="contactField"
+              name="contactField"
+              placeholder="Contact"
+              pattern="[6789][0-9]{9}"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="qualificationField">Qualification</label>
+            <select
+              class="form-control"
+              id="qualificationField"
+              name="qualificationField" required
+            >
+              <option value="">Select</option>
+              <option value="B.Sc. - CS">B.Sc. - CS</option>
+              <option value="B.E. - CS">B.E. - CS</option>
+              <option value="B.E. - IT">B.E. - IT</option>
+              <option value="M.E. - CS">M.E. - CS</option>
+              <option value="M.E. - IT">M.E. - IT</option>
+              <option value="M.B.A">M.B.A</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Support Documents -->
+    <div class="container-fluid cf-form1">
+      <h3 class="formHead">SUPPORT DOCUMENTSS</h3>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="aadhar">AADHAR</label>
+            <input type="file" class="form-control" id="aadhar" name="aadhar" />
+          </div>
+          <div class="form-group">
+            <label for="pan">PAN</label>
+            <input type="file" class="form-control" id="pan" name="pan" />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="passport">PASSPORT</label>
+            <input
+              type="file"
+              class="form-control"
+              id="passport"
+              name="passport"
+            />
+          </div>
+          <div class="form-group">
+            <label for="license">DRIVING LICENSE</label>
+            <input
+              type="file"
+              class="form-control"
+              id="license"
+              name="license"
+            />
+          </div>
+          <div id="info"></div>
+        </div>
+      </div>
+    </div>
+    <button type="submit" value="upload" class="btn btn-primary">Submit</button>
+  </form>
+</section>
+
+<script>
+  
+  // const input = document.querySelector('input[type="file"]');
+  // const userInfo = document.getElementById('info');
+
+  // input.addEventListener('change', ()=>{
+  //   validateSize();
+  // })
+
+  // function validateSize(){
+  //   const file = input.files[0];
+  //   if(!file){
+  //     const err = new Error ("No File Selected");
+  //     userInfo.textContent = err.message;
+  //     return err;
+  //   }
+  //   const limit = 2000;
+  //   const size = file.size/1024;
+
+  //   if(size > limit){
+  //     const err = new Error("File Size Limit Exceeds");
+  //     userInfo.textContent = err.message;
+  //     return err;
+  //   }
+  //   else{
+  //     return false;
+  //   }
+  // }
+
+</script>
+
+<%- include('partials/footer.ejs') %>

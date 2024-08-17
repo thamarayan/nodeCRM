@@ -1,0 +1,76 @@
+body {
+  padding: 50px;
+}
+
+/* Navbar */
+
+.navbar {
+  padding: 2% !important;
+}
+
+.navbar-brand {
+  font-size: 1.5em !important;
+  font-weight: bold !important;
+  color: blue !important;
+}
+
+.nav-link {
+  font-weight: bold !important;
+  padding-left: 3em !important;
+}
+
+.nav-link:hover {
+  color: blue !important;
+}
+
+/* Index Page Form */
+
+.cf-form {
+  margin: 2% 0% !important;
+  padding: 2% !important;
+  background-color: #f5f7f8 !important;
+}
+
+.cf-form1 {
+  margin: 2% 0% !important;
+  padding: 2% !important;
+  background-color: #F7EFE5 !important;
+}
+
+.form-group {
+  padding-top: 4% !important;
+}
+
+.formHead {
+  color: lightslategray;
+  font-size: 1.5em;
+}
+
+
+/* Admin Page  */
+
+.cf-dataTable{
+  padding: 2% !important;
+}
+
+.dataTable{
+  background-color: #E7FBE6 !important;
+  align-items:center !important;
+  padding: 3% 2% 3% !important;
+}
+
+.formHead1 {
+  color: lightslategray;
+  font-size: 1.5em;
+  padding-bottom: 2% !important;
+}
+
+.searchProfile{
+  align-items: center !important;
+  background-color: #FEFAE0 !important;
+  margin-top: 2% !important;
+}
+
+.fields{
+  margin: 0% 0% 2%!important;
+}
