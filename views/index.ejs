@@ -26,7 +26,7 @@
               id="addressField"
               name="addressField"
               placeholder="Address"
-              pattern="^(?=\S*\s)(?=[^a-zA-Z]*[a-zA-Z])(?=\D*\d)[a-zA-Z\d\s',.#/-]*$"
+              pattern="^[a-zA-Z0-9_.-]*$"
             />
           </div>
           <div class="form-group">
@@ -91,12 +91,12 @@
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
-            <label for="aadhar">AADHAR</label>
-            <input type="file" class="form-control" id="aadhar" name="aadhar" accept="image/* , application/pdf" />
+            <label for="aadhar">AADHAR <span style="color: red;">*</span></label>
+            <input type="file" class="form-control" id="aadhar" name="aadhar" accept="image/* , application/pdf" required />
           </div>
           <div class="form-group">
-            <label for="pan">PAN</label>
-            <input type="file" class="form-control" id="pan" name="pan" />
+            <label for="pan">PAN <span style="color: red;">*</span></label>
+            <input type="file" class="form-control" id="pan" name="pan" accept="image/* , application/pdf" required/>
           </div>
         </div>
         <div class="col-md-6">
@@ -107,6 +107,7 @@
               class="form-control"
               id="passport"
               name="passport"
+              accept="image/* , application/pdf" 
             />
           </div>
           <div class="form-group">
@@ -116,6 +117,7 @@
               class="form-control"
               id="license"
               name="license"
+              accept="image/* , application/pdf" 
             />
           </div>
           <div id="info"></div>
@@ -128,32 +130,35 @@
 
 <script>
   
-  // const input = document.querySelector('input[type="file"]');
-  // const userInfo = document.getElementById('info');
+  const input = document.querySelector('input[type="file"]');
+  const userInfo = document.getElementById('info');
 
-  // input.addEventListener('change', ()=>{
-  //   validateSize();
-  // })
+  input.addEventListener('change', ()=>{
+    validateSize();
+  })
 
-  // function validateSize(){
-  //   const file = input.files[0];
-  //   if(!file){
-  //     const err = new Error ("No File Selected");
-  //     userInfo.textContent = err.message;
-  //     return err;
-  //   }
-  //   const limit = 2000;
-  //   const size = file.size/1024;
+  function validateSize(){
+    alert('Hit');
+    const file = input.files[0];
+    if(!file){
+      const err = new Error ("No File Selected");
+      userInfo.textContent = err.message;
+      return err;
+    }
+    const limit = 2000;
+    const size = file.size/1024;
 
-  //   if(size > limit){
-  //     const err = new Error("File Size Limit Exceeds");
-  //     userInfo.textContent = err.message;
-  //     return err;
-  //   }
-  //   else{
-  //     return false;
-  //   }
-  // }
+    if(size > limit){
+      const err = new Error("File Size Limit Exceeds");
+      userInfo.textContent = err.message;
+      return err;
+    }
+    else{
+      return false;
+    }
+  }
+
+  
 
 </script>
 

@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 var multer = require("multer");
 const path = require("path");
 
+
 var Client = require("../models/client");
 
 // Database Connection
@@ -38,6 +39,7 @@ var fileFilter = (req, file, cb) => {
   } else {
     cb(null, false);
     return cb(new Error('Only .png / .jpg / .pdf files are allowed'))
+    
   }
 };
 
