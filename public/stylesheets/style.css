@@ -74,3 +74,17 @@ body {
 .fields{
   margin: 0% 0% 2%!important;
 }
+
+.approved{
+  background-color: green !important;
+  text-decoration: none !important;
+  color: white !important;
+  padding: 3px !important;
+}
+
+.pending{
+  background-color: red !important;
+  text-decoration: none !important;
+  color: white !important;
+  padding: 3px !important;
+}

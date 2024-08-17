@@ -101,6 +101,7 @@ router.get("/admin", function (req, res, next) {
 
   Client.find().then((result)=>{
     // console.log(result);
+    
     res.render("adminLogin", { title: "Admin | Node CRM", clients:result });
   }).catch((err)=>{
     console.log("Error is " + err);
@@ -112,7 +113,8 @@ router.get("/database", function (req, res, next) {
 
   Client.find().then((result)=>{
     // console.log(result);
-    res.render("database", { title: "Database | Node CRM", clients:result });
+    let message = null;
+    res.render("database", { title: "Database | Node CRM", clients:result, message:message });
   }).catch((err)=>{
     console.log("Error is " + err);
   });
@@ -143,8 +145,17 @@ router.get('/revoke/:id', function(req,res,next){
 
 router.post('/searchProfile', async function(req,res,next){
   var searchKey = req.body.key;
+  var message;
   let search = await Client.find({name:{$regex: searchKey , "$options" : "i"}}).exec();
-  res.render("database", { title: "Database | Node CRM", clients:search });
+  if(search.length === 0){
+    message = "No Profile found";
+  }
+  else
+  {
+    message = "";
+  }
+  console.log(message);
+  res.render("database", { title: "Database | Node CRM", clients:search, message:message });
 })
 
 

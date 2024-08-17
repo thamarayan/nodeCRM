@@ -12,7 +12,10 @@
                           <input type="text" class="form-control fields" id="key" name="key" placeholder="Enter a Name">
                         </div>
                         <button type="submit" class="btn btn-sm btn-warning mb-2 fields">Search Profile</button>
-                      
+                        <a href="/database" type="button" class="btn btn-sm btn-secondary mb-2 fields">Clear Search</a>
+                       <% if (message) { %>
+                            <p><%=message%></p>
+                       <% } %> 
                 </form>
             </div>
         </div>
@@ -82,9 +85,9 @@
                                     </td>
                                     <td>
                                         <% if (client.status === true) { %>
-                                            <a>Approved</a> 
+                                            <a class="approved">Approved</a> 
                                         <% } else { %>
-                                            <a>Pending</a>
+                                            <a class="pending">Pending</a>
                                         <% } %>
                                     </td>
                                     
