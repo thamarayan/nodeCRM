@@ -132,34 +132,7 @@
 
 <script>
   
-  const input = document.querySelector('input[type="file"]');
-  const userInfo = document.getElementById('info');
-
-  input.addEventListener('change', ()=>{
-    validateSize();
-  })
-
-  function validateSize(){
-    alert('Hit');
-    const file = input.files[0];
-    if(!file){
-      const err = new Error ("No File Selected");
-      userInfo.textContent = err.message;
-      return err;
-    }
-    const limit = 2000;
-    const size = file.size/1024;
-
-    if(size > limit){
-      const err = new Error("File Size Limit Exceeds");
-      userInfo.textContent = err.message;
-      return err;
-    }
-    else{
-      return false;
-    }
-  }
-
+ 
   
 
 </script>
