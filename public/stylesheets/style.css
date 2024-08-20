@@ -46,6 +46,16 @@ body {
   font-size: 1.5em;
 }
 
+.pageHead{
+  font-family: "DM Serif Text", serif;
+  font-weight:800;
+  font-style: normal;
+  padding-top: 2% !important;
+  letter-spacing: 10px  !important;
+  text-align: center !important  ;
+  color:blueviolet !important;
+}
+
 
 /* Admin Page  */
 
@@ -87,4 +97,9 @@ body {
   text-decoration: none !important;
   color: white !important;
   padding: 3px !important;
+}
+
+.cf-loginPage{
+  padding: 3rem 1rem 1rem !important;
+  margin-top: 3% !important;
 }

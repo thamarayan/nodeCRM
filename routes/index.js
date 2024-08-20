@@ -3,9 +3,11 @@ var router = express.Router();
 const mongoose = require("mongoose");
 var multer = require("multer");
 const path = require("path");
-
-
+const session = require("express-session");
 var Client = require("../models/client");
+var User = require('../models/user');
+const Cryptr = require('cryptr');
+const cryptr = new Cryptr('moxeIndia', { encoding: 'base64', pbkdf2Iterations: 10000, saltLength: 10 });
 
 // Database Connection
 mongoose.connect(
@@ -38,8 +40,7 @@ var fileFilter = (req, file, cb) => {
     cb(null, true);
   } else {
     cb(null, false);
-    return cb(new Error('Only .png / .jpg / .pdf files are allowed'))
-    
+    return cb(new Error('Only .png / .jpg / .pdf files are allowed'));
   }
 };
 
@@ -51,6 +52,7 @@ var upload = multer({
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
+
   res.render("index", { title: "Express" });
 });
 
@@ -101,13 +103,19 @@ router.post("/submitClientData", upload.fields([
 
 router.get("/admin", function (req, res, next) {
 
-  Client.find().then((result)=>{
-    // console.log(result);
-    
-    res.render("adminLogin", { title: "Admin | Node CRM", clients:result });
-  }).catch((err)=>{
-    console.log("Error is " + err);
-  });
+  if(req.session.authenticated === true){
+
+    Client.find().then((result)=>{
+      // console.log(result);
+      res.render("adminLogin", { title: "Admin | Node CRM", clients:result });
+    }).catch((err)=>{
+      console.log("Error is " + err);
+    }); 
+
+  }
+  else{
+    res.render('login',{message:null});
+  }
     
 })
 
@@ -160,5 +168,63 @@ router.post('/searchProfile', async function(req,res,next){
   res.render("database", { title: "Database | Node CRM", clients:search, message:message });
 })
 
+router.get('/login', function(req,res,next){
+  if(req.session.authenticated === true)
+    {
+      res.redirect('/');
+    }
+    else{
+      res.render('login', {message:null});
+    }
+})
+
+router.post('/login', function(req,res,next){
+  var username = req.body.username;
+  var password = req.body.password;
+  User.findOne({'email':username})
+  .then(result=>{
+    if(!result){
+      res.render('login', {message:'No User Found'});
+    }
+    else if(cryptr.decrypt(result.password) === password){
+      req.session.authenticated = true;
+      res.redirect('/admin');
+    }
+    else{
+      res.render('login', {message:'Wrong Credentials'});
+    }
+  })
+  });
+
+router.get('/signup', function(req,res,next){
+
+  res.render('signup', {message:null});
+})
+
+router.post('/signup', function(req,res,next){
+  var username = req.body.username;
+  var password = cryptr.encrypt(req.body.password) ;
+  User.findOne({'email':username})
+  .then(result=>{
+    if(!result){
+      var newUser = new User({
+        email:username,
+        password:password
+      })
+      newUser.save()
+      .then(result=>{
+        res.render('login', {message:"Login created successfully. Please Log In"});
+      }).catch(err=>{console.log(err)});
+    }
+    else{
+      res.render('signup', {message:'User already exists !'});
+    }
+  }).catch(err=>console.log(err));
+})
+
+router.get('/logout', function(req,res,next){
+  req.session.destroy();
+  res.redirect('/');
+})
 
 module.exports = router;

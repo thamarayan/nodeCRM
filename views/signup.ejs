@@ -1,0 +1,46 @@
+<%- include('partials/header.ejs') %>
+
+
+<div id="section">
+    <div class="row">
+        <div class="container-fluid cf-loginPage">
+            <div class="col-md-3"></div>
+            <div class="col-md-5 justify-content-center m-auto">
+                <form method="post" action="/signup">
+                    <h3 class="formHead">SIGNUP</h3>
+                    <% if (message) { %>
+                        
+                        <p style="padding-bottom: 5px !important; margin-bottom:0% !important; color: red !important;"><%=message%></p>
+        
+                    <% } %>
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="username" name="username" placeholder="name@example.com">
+                        <label for="floatingInput">Email address</label>
+                      </div>
+                      <div class="form-floating mb-3">
+                        <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
+                        <label for="floatingPassword">Password</label>
+                      </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%- include('partials/footer.ejs') %>
